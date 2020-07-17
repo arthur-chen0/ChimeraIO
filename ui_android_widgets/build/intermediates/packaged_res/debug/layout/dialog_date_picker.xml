@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e6e6e6"
+        android:padding="10dp">
+
+        <com.jht.androiduiwidgets.autofit.AutofitEditTextView
+            android:id="@+id/dialogTitleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/date_tc"
+            android:textAlignment="center"
+            android:textColor="#333333"
+            android:textSize="26sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1a1a1a00"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:id="@+id/spinner_container">
+
+        <RelativeLayout
+            android:layout_width="500dp"
+            android:layout_height="430dp">
+
+            <com.jht.androiduiwidgets.dialog.CustomDatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:scaleX="2"
+                android:scaleY="2"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1a1a1a00"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            >
+
+            <ImageButton
+                android:id="@+id/buttonCancel"
+                android:layout_width="258dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:background="@color/button_red"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_close_white"/>
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/button_green">
+            <ImageButton
+                android:id="@+id/buttonOk"
+                android:layout_width="258dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:background="@color/button_green"
+                />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_check_white"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+        maven { url 'http://192.168.213.187:8081/artifactory/jht-dev-local' }
+        maven {	url 'https://maven.google.com' }
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+        
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+        maven { url 'http://192.168.213.187:8081/artifactory/jht-dev-local' }
+        maven { url 'http://192.168.213.187:8081/artifactory/jht-release-local' }
+        maven {	url 'https://maven.google.com' }
+        maven {	url 'https://dl.bintray.com/videolan/Android/' }
+    }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:-deprecation"
+        }
+    }
+}
+
+apply from: 'device-control.gradle'
+
+ext {
+    // 1.0.0
+    major_number = 1
+    minor_number = 1
+    patch_number = 0
+
+    // To enable beta phase, change the beta_number above 0.
+    beta_number = 0
+    postfix_name = 'beta'
+}
+
+ext.generateVersionCode = { majorNumber, minorNumber, patchNumber, betaNumber ->
+    if (betaNumber > 0) {
+        return (majorNumber * 1000000) + (minorNumber * 10000) + ((patchNumber - 1) * 100) + betaNumber
+    } else {
+        return (majorNumber * 1000000) + (minorNumber * 10000) + (patchNumber * 100)
+    }
+}
+
+ext.generateVersionName = { majorNumber, minorNumber, patchNumber, betaNumber, postfixName ->
+
+    String today = new Date().format("yyMMdd.HHmm")
+
+    if (betaNumber > 0) {
+        return "${majorNumber}.${minorNumber}.${today} ${postfixName} ${betaNumber}"
+    } else {
+        return "${majorNumber}.${minorNumber}.${today}"
+    }
+
+
+
+    "$aa.$bb.$cccc.$today"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

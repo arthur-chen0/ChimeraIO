@@ -1,0 +1,140 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_text_input_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <RelativeLayout
+        android:id="@+id/user_text_input_error_message_container"
+        android:layout_width="0dp"
+        android:layout_weight=".35"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:id="@+id/user_text_input_error_message_inner_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            tools:ignore="RtlHardcoded,UselessParent">
+            <TextView
+                android:id="@+id/user_text_input_error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="18dp"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                tools:ignore="HardcodedText,RtlHardcoded,SpUsage" />
+
+            <ImageView
+                android:id="@+id/user_text_input_busy"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_spinner"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                android:contentDescription="@null" />
+
+            <ImageView
+                android:id="@+id/user_text_valid"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/button_accept"
+                android:visibility="gone"
+                android:contentDescription="@null" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight=".65"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_text_input_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/edit_text_label_size"
+            app:autoSizeMaxTextSize="@dimen/edit_text_label_size"
+            app:autoSizeTextType="uniform"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:typeface="normal"
+            tools:ignore="SpUsage" />
+
+
+        <RelativeLayout
+            android:id="@+id/user_text_input_container"
+            android:layout_width="match_parent"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:layout_height="@dimen/user_text_info_text"
+            android:gravity="center"
+            android:background="@android:color/transparent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/jht_edit_text_auto_correct_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="@dimen/edit_text_label_size"
+                app:autoSizeMaxTextSize="@dimen/edit_text_label_size"
+                app:autoSizeTextType="uniform"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <com.jht.androiduiwidgets.autofit.AutofitEditTextView
+                android:id="@+id/user_text_input_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="24dp"
+                android:maxLines="1"
+                android:selectAllOnFocus="true"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:imeOptions="actionDone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@android:color/transparent"
+                android:isScrollContainer="false"
+                tools:ignore="SpUsage"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

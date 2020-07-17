@@ -1,0 +1,192 @@
+//================================================================
+// Simple ADB Commands to automate common device-control tasks
+//
+// PLEASE DON'T REMOVE, THESE DON'T HURT ANYTHING
+//================================================================
+
+task simulateClickBackButton {
+    // simulate clicking the back button in Android. Convenient because we removed it via OS mods
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'input keyevent KEYCODE_BACK'
+        }
+    }
+}
+
+
+task simulateClickHomeButton {
+    // simulate clicking the home button in Android. Convenient because we removed it via OS mods
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'input keyevent KEYCODE_HOME'
+        }
+    }
+}
+
+
+task switchToAndroidLauncher {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am start -n com.android.launcher3/com.android.launcher3.Launcher'
+        }
+    }
+}
+
+task simulateGoButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_GO"'
+        }
+    }
+}
+
+task simulateStopButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_STOP"'
+        }
+    }
+}
+
+task simulatePauseButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_PAUSE"'
+        }
+    }
+}
+task simulateSpeedUpButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_SPEED_UP"'
+        }
+    }
+}
+task simulateSpeedDownButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_SPEED_DOWN"'
+        }
+    }
+}
+task simulateInclineUpButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_INCLINE_UP"'
+        }
+    }
+}
+
+task simulateInclineDownButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_INCLINE_DOWN"'
+        }
+    }
+}
+
+task simulateResistanceUpButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_RESISTANCE_UP"'
+        }
+    }
+}
+
+task simulateResistanceDownButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_RESISTANCE_DOWN"'
+        }
+    }
+}
+
+task simulateCooldownButton {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'am broadcast -a "com.jht.keypress" --es key_code "KEY_COOLDOWN"'
+        }
+    }
+}
+
+task disablePersistentServices {
+    // Disable persistent services. Needs to be followed by a reboot which could very easy be added
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'settings put secure jht_disable_persistent 1'
+        }
+    }
+}
+
+
+task enablePersistentServices {
+    // Enable persistent services. Needs to be followed by a reboot which could very easy be added
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'settings put secure jht_disable_persistent 0'
+        }
+    }
+}
+
+
+
+task reboot {
+    group 'device control'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'reboot'
+        }
+    }
+}
+
+
+task pushConsoleAssets {
+    group 'install'
+    doLast {
+        exec {
+            executable 'adb'
+            args 'shell', 'rm -rf /sdcard/jht/*'
+        }
+        exec {
+            executable 'adb'
+            args 'push', '../../Deploy/chimera_assets/.', '/sdcard/jht'
+        }
+        exec {
+            executable 'adb'
+            args 'shell', 'rm -f /sdcard/jht/update.sh'
+        }
+    }
+}
+
+

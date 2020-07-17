@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <integer name="eng_cols_per_page">3</integer>
+
+
+    <item name="min_accumulated_distance" type="integer" format="float">0.0</item>
+    <item name="max_accumulated_distance_miles" type="integer" format="float">1959556.0</item>
+
+    <integer name="min_accumulated_floors">0</integer>
+    <integer name="max_accumulated_floors">2000000000</integer>
+
+    <integer name="min_accumulated_time">0</integer>
+    <integer name="max_accumulated_time">596523</integer>
+    <integer name="max_serial_number_chars">32</integer>
+
+    <integer name="min_workout_time">10</integer>
+    <integer name="max_workout_time">120</integer>
+
+    <item name="min_workout_distance_miles" type="integer" format="float">0.6</item>
+    <item name="max_workout_distance_miles" type="integer" format="float">31.1</item>
+
+    <item name="min_workout_distance_km" type="integer" format="float">1.0</item>
+    <item name="max_workout_distance_km" type="integer" format="float">50.0</item>
+
+    <item name="min_workout_distance_bike_miles" type="integer" format="float">0.6</item>
+    <item name="max_workout_distance_bike_miles" type="integer" format="float">62.1</item>
+
+    <item name="min_workout_distance_bike_km" type="integer" format="float">1.0</item>
+    <item name="max_workout_distance_bike_km" type="integer" format="float">100.0</item>
+
+    <integer name="min_workout_calories">50</integer>
+    <integer name="max_workout_calories">10000</integer>
+
+
+    <item name="min_start_speed_mph" type="integer" format="float">0.5</item>
+    <item name="max_start_speed_mph" type="integer" format="float">1.4</item>
+    <item name="min_start_speed_kph" type="integer" format="float">0.8</item>
+    <item name="max_start_speed_kph" type="integer" format="float">2.3</item>
+
+
+    <item name="min_max_speed_mph" type="integer" format="float">3.1</item>
+    <item name="max_max_speed_mph" type="integer" format="float">15.0</item>
+    <item name="min_max_speed_kph" type="integer" format="float">5.0</item>
+    <item name="max_max_speed_kph" type="integer" format="float">24.1</item>
+
+    <item name="min_incline_tm" type="integer" format="float">0.0</item>
+    <item name="max_incline_tm" type="integer" format="float">15.0</item>
+
+
+    <integer name="min_pause_time">1</integer>
+    <integer name="max_pause_time">10</integer>
+    <integer name="min_cool_down_time">1</integer>
+    <integer name="max_cool_down_time">5</integer>
+    <integer name="min_cool_down_adjust_time">1</integer>
+    <integer name="max_cool_down_adjust_time">20</integer>
+
+    <item name="min_keyboard_disable_mph" type="integer" format="float">0.5</item>
+    <item name="max_keyboard_disable_mph" type="integer" format="float">4.0</item>
+
+    <item name="min_keyboard_disable_kph" type="integer" format="float">0.8</item>
+    <item name="max_keyboard_disable_kph" type="integer" format="float">6.4</item>
+
+    <integer name="min_default_level">1</integer>
+    <integer name="max_default_level">20</integer>
+    <integer name="min_default_age">14</integer>
+    <integer name="max_default_age">99</integer>
+
+    <integer name="min_default_weight_imperial">50</integer>
+    <integer name="max_default_weight_imperial">400</integer>
+    <integer name="min_default_weight_metric">22</integer>
+    <integer name="max_default_weight_metric">181</integer>
+
+    <integer name="min_default_height_imperial">40</integer>
+    <integer name="max_default_height_imperial">90</integer>
+    <integer name="min_default_height_metric">101</integer>
+    <integer name="max_default_height_metric">228</integer>
+
+    <integer name="min_default_workout_time">5</integer>
+    <integer name="max_default_workout_time">120</integer>
+    <integer name="min_default_workout_calories">50</integer>
+    <integer name="max_default_workout_calories">10000</integer>
+    <integer name="min_default_workout_floors">15</integer>
+    <integer name="max_default_workout_floors">300</integer>
+    <item name="min_default_workout_distance_tm_imperial" type="integer" format="float">0.6</item>
+    <item name="max_default_workout_distance_tm_imperial" type="integer" format="float">31.1</item>
+    <item name="min_default_workout_distance_tm_metric" type="integer" format="float">1.0</item>
+    <item name="max_default_workout_distance_tm_metric" type="integer" format="float">50.0</item>
+
+    <integer name="workout_apps_per_page">18</integer>
+    <integer name="workout_apps_per_page_rows">3</integer>
+
+    <integer name="workout_apps_per_page_cols">6</integer>
+
+</resources>

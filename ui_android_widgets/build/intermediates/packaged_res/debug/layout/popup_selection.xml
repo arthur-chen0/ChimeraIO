@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#90000000" >
+
+    <RelativeLayout
+        style="@style/jht_standard_container"
+        android:id="@+id/dialog_container"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentStart="false"
+        android:background="#FF575E65"
+        android:padding="10dp" >
+
+        <androidx.recyclerview.widget.RecyclerView
+            style="@style/jht_standard_inner_recycle_container"
+            android:id="@+id/pop_up_selector"/>
+    </RelativeLayout>
+
+</RelativeLayout>

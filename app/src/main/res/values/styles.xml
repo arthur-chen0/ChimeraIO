@@ -1,0 +1,97 @@
+<resources>
+
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
+
+    <style name="ChimeraTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+    </style>
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:taskOpenEnterAnimation">@anim/activity_fade_in</item>
+        <item name="android:taskOpenExitAnimation">@anim/activity_fade_out</item>
+        <item name="android:taskToFrontEnterAnimation">@anim/activity_fade_in</item>
+        <item name="android:taskToFrontExitAnimation">@anim/activity_fade_out</item>
+    </style>
+
+    <style name="engineering_line_break">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:background">@drawable/engineering_line_break</item>
+    </style>
+
+    <style name="GeneralEngineeringButton">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:background">@drawable/standard_button</item>
+    </style>
+
+    <style name="EngineeringPageGridLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alignmentMode">alignBounds</item>
+        <item name="android:columnCount">@integer/eng_cols_per_page</item>
+    </style>
+
+    <style name="EngineeringPage" parent="jht_standard_container">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">#00FFFFFF</item>
+    </style>
+
+    <style name="GeneralEditTextEngineering">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="edit_width">280dp</item>
+        <!--<item name="android:layout_marginEnd">@dimen/engineering_column_margin</item>-->
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:layout_height">wrap_content</item>"
+        <item name="auto_correct">true</item>
+        <item name="label_size_dp">20</item>
+    </style>
+
+    <style name="GeneralEngineeringTextValue" parent="GeneralEditTextEngineering">
+        <item name="android:inputType">number</item>
+        <item name="input_type">integer_input</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="GeneralEngineeringTextHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">left|bottom</item>
+        <item name="android:textSize">@dimen/jht_setting_title_text_size</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="GeneralEditTextIntEngineering" parent="GeneralEditTextEngineering">
+        <item name="android:inputType">number</item>
+        <item name="input_type">integer_input</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="GeneralEditTextStringEngineering" parent="GeneralEditTextEngineering">
+        <item name="android:inputType">textNoSuggestions</item>
+        <item name="input_type">text_input</item>
+    </style>
+
+</resources>

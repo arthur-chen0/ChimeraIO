@@ -1,0 +1,22 @@
+<resources>
+
+    <color name="matrix_yorange">#FFFCAF1A</color>
+
+
+    <color name="selector_item_triangle_gray">#FFB3B3B3</color>
+    <color name="selector_item_pressed_gray">#FF999999</color>
+    <color name="selector_item_gray">#FFE6E6E6</color>
+    <color name="selector_item_disabled_gray">#FF999999</color>
+    <color name="scrollbar_thumb">#FFE6E6E6</color>
+    <color name="scrollbar_track">#FF333333</color>
+    <color name="button_green">#90993f</color>
+    <color name="button_red">#ff0000</color>
+    <!-- Workout Select Panel Color -->
+
+
+    <color name="keypad_back_button_selected">#FF333333</color>
+    <color name="keypad_button">#FFCCCCCC</color>
+    <color name="keypad_button_selected">#FF777777</color>
+    <color name="keypad_default_background">#99FFFFFF</color>
+
+</resources>
