@@ -1,11 +1,22 @@
 package com.jht.chimera.io;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
@@ -18,7 +29,10 @@ import com.jht.chimera.io.lib.PowerType.PowerSource;
 import com.jht.serialport.SerialPort;
 import com.jht.serialport.SerialPortConfiguration;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
 
+        //Start MCU communication
         IOManager.getInstance().start(new SerialPort(DEVICE_PATH,serialPortSetting()));
         IOManager.getInstance().setCallback(mcuCallback);
 
@@ -76,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         PowerType.getInstance().addPower(HardwareControlDevices.HEART_RATE.name(), (byte)0x0D, findViewById(R.id.salutron_switch));
         PowerType.getInstance().addPower(HardwareControlDevices.GYMKIT.name(), (byte)0x0E, findViewById(R.id.gymkit_switch));
         PowerType.getInstance().addPower(HardwareControlDevices.USB_5V.name(), (byte)0x0F, findViewById(R.id.usb_switch));
-        PowerType.getInstance().addPower("EXT_14", (byte)0x10, findViewById(R.id.ext14_switch));
+        PowerType.getInstance().addPower(HardwareControlDevices.EXT_14.name(), (byte)0x10, findViewById(R.id.ext14_switch));
 
         //Init switch listener
         switchListener = (compoundButton, b) -> {
@@ -97,6 +112,103 @@ public class MainActivity extends AppCompatActivity {
                 power.getPowerSwitch().setOnCheckedChangeListener(switchListener);
             }
         }).start();
+
+        findViewById(R.id.btn_update).setOnClickListener(view -> {
+            try {
+//                String fileName[] = MainActivity.this.getAssets().list("");
+                ArrayList<String> fileList = new ArrayList(Arrays.asList(MainActivity.this.getAssets().list("")));
+                Log.d(TAG, "Update File size " + fileList.size());
+
+                if(fileList.size() > 0){
+                    AlertDialog.Builder updateDialog = new AlertDialog.Builder(MainActivity.this);
+
+                    updateDialog.setAdapter(new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, fileList), (dialog, which) -> {
+
+                        Log.d("Update", "File Name: " + fileList.get(which));
+                        cmdHandler.updateIO(fileList.get(which));
+
+//                        AlertDialog.Builder progressDialog = new AlertDialog.Builder(MainActivity.this);
+                        AlertDialog progressDialog = new AlertDialog.Builder(MainActivity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert).create();
+//                        final View dialogView = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_progress_customize,null);
+                        View dialogView = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_customize,null);
+//                        progressDialog.setTitle("MCU Firmware Updating...");
+                        progressDialog.setView(dialogView);
+
+                        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        WindowManager.LayoutParams dialogWindow = progressDialog.getWindow().getAttributes();
+                        dialogWindow.format = PixelFormat.TRANSLUCENT;
+                        dialogWindow.alpha = 0.6f;
+
+                        final TextView message = dialogView.findViewById(R.id.text_dialog_message);
+
+                        progressDialog.show();
+
+                        BroadcastReceiver ioResult = new BroadcastReceiver() {
+                            @Override
+                            public void onReceive(Context context, Intent intent) {
+                                float percent = intent.getFloatExtra("percent", 0.0f);
+                                int status = intent.getIntExtra("status", 0);
+
+                                runOnUiThread(() -> {
+
+//                                    message.getBackground().setAlpha(50);
+                                    switch (status) {
+                                        case 1028: //start update
+                                            message.setText("MCU Update Started");
+                                            break;
+                                        case 1026: //update processing
+                                            message.setText(String.format(Locale.ENGLISH, "MCU Update %.0f%s", percent * 1.0f, "%"));
+                                            Log.d(TAG, "onReceive: MCU update processing... " + percent * 1.0f);
+                                            break;
+                                        case 1032: //end update
+                                            message.setText("IO Update Completed");
+                                            break;
+                                        case 1:
+                                            message.setText("IO Update Failed: MCU no response");
+                                            Log.e(TAG, "IO update failed, MCU no response");
+                                            break;
+                                    }
+                                });
+
+                            }
+                        };
+                        registerReceiver(ioResult, new IntentFilter("com.jht.updateio.result"));
+
+//                        new Thread(() -> {
+//                            try {
+//
+//                                Thread.sleep(10000);
+//                                while(McuUpdateManager.Instance.getPercent() <= McuUpdateManager.Instance.getTotalUpdatePackage()){
+//
+//                                    Thread.sleep(100);
+//                                    runOnUiThread(() -> {
+//                                        progress.setProgress(McuUpdateManager.Instance.getPercent());
+//                                        percent.setText((McuUpdateManager.Instance.getPercent() * 100 / McuUpdateManager.Instance.getTotalUpdatePackage()) + "%");
+//                                        Log.d("Mcu","update progress: " + McuUpdateManager.Instance.getPercent());
+//                                    });
+//
+//                                }
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }).start();
+
+                    });
+
+                    updateDialog.show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        });
+
+        findViewById(R.id.btn_Exit).setOnClickListener(view -> {
+            this.finish();
+            onDestroy();
+            System.exit(0);
+        });
 
     }
 

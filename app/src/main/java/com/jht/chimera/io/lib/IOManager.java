@@ -10,6 +10,7 @@ import com.jht.androidcommonalgorithms.timer.PeriodicTimer;
 import com.jht.serialport.SerialPort;
 import com.jht.chimera.io.lib.IOPacket.parseState;
 import com.jht.chimera.io.lib.IOPacket.parseResult;
+import com.jht.chimera.io.lib.IOPacket.CommandType;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -195,14 +196,14 @@ public class IOManager {
     }
 
 
-    public void updateIO(Uri uri) {
+    public void updateIO(String fileName) {
         stop();
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        McuUpdateManager.Instance.startUpdate(_port, context, uri);
+        McuUpdateManager.Instance.startUpdate(_port, fileName);
 
     }
 
@@ -380,13 +381,13 @@ public class IOManager {
 //        Log.d(TAG,"receiveHandler parseState: " + result);
     }
 
-    @SuppressWarnings("CharsetObjectCanBeUsed") void rxProcess(int command, byte[] payload, IOPacket.CommandType commandType) {
+    @SuppressWarnings("CharsetObjectCanBeUsed") void rxProcess(int command, byte[] payload, CommandType commandType) {
         IOProtocol.Commands commandCode = IOProtocol.Commands.fromInt(command);
         Log.d(TAG, "command Code: " + command + "  command name:" + commandCode.toString());
         if(commandCode == null) return;
 
         result = parseState.Success;
-        if (commandType == IOPacket.CommandType.EVENT) {
+        if (commandType == CommandType.EVENT) {
             switch (commandCode) {
                 case KEY_EVENT:
                     Log.d(TAG, "Key event Row: " + String.format("%X", payload[1]) + "  Column:" + String.format("%X", payload[2]) + " event: " + payload[0]);
@@ -459,7 +460,7 @@ public class IOManager {
         String _txMessage = "";
         if(this.txCommand != null)
             _txMessage = this.txCommand.getTxMessage();
-        if (commandCode.toString().equals(_txMessage) && commandType == IOPacket.CommandType.REPLAY) {
+        if (commandCode.toString().equals(_txMessage) && commandType == CommandType.REPLAY) {
             if (ioPacket.getResult() == parseResult.Success) {
                 _txPacketQueue.poll();
                 _txRetryCounter = 0;

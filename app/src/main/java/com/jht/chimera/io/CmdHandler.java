@@ -12,8 +12,8 @@ public class CmdHandler {
     public final String TAG = getClass().getSimpleName();
     private PeriodicTimer fanStateTimer;
 
-    public void updateIO(Uri uri) {
-        IOManager.getInstance().updateIO(uri);
+    public void updateIO(String fileName) {
+        IOManager.getInstance().updateIO(fileName);
     }
 
     public void beep() {

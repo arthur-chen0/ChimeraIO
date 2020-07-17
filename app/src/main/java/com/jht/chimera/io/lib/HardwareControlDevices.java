@@ -13,5 +13,6 @@ public enum HardwareControlDevices {
     IPOD,
     HEART_RATE,
     GYMKIT,
-    USB_5V
+    USB_5V,
+    EXT_14
 }

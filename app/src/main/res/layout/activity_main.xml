@@ -2,8 +2,6 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/EngineeringPage"
     android:orientation="vertical">
 
@@ -16,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ App info -->
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -71,16 +71,24 @@
 <!--            </LinearLayout>-->
         </LinearLayout>
 
-<!--Separate line-->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
+
         <RelativeLayout
             style="@style/engineering_line_break" />
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Power switch label -->
 
         <TextView
             android:layout_width="350dp"
             style="@style/GeneralEngineeringTextHeading"
             android:text="Power Control" />
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 1 -->
+
+        <TextView
+            android:layout_height="15dp"
+            style="@style/GeneralEngineeringTextHeading"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +140,7 @@
 
         </LinearLayout>
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 2 -->
 
         <TextView
             android:layout_height="15dp"
@@ -189,7 +197,7 @@
 
         </LinearLayout>
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 3 -->
 
         <TextView
             android:layout_height="15dp"
@@ -246,7 +254,7 @@
 
         </LinearLayout>
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 4 -->
 
         <TextView
             android:layout_height="15dp"
@@ -279,11 +287,12 @@
 
         </LinearLayout>
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Fan -->
-<!--Separate line-->
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
+
 <!--        <RelativeLayout-->
 <!--            style="@style/engineering_line_break"/>-->
 
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Fan -->
 <!--        <LinearLayout-->
 <!--            android:layout_width="wrap_content"-->
 <!--            android:layout_height="wrap_content"-->
@@ -326,9 +335,28 @@
 
 <!--        </LinearLayout>-->
 
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
 
         <RelativeLayout
             style="@style/engineering_line_break"/>
+
+        <Button
+            android:id="@+id/btn_update"
+            style="@style/GeneralEngineeringButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update MCU Firmware" />
+
+        <TextView
+            android:layout_height="5dp"
+            style="@style/GeneralEngineeringTextHeading"/>
+
+        <Button
+            android:id="@+id/btn_Exit"
+            style="@style/GeneralEngineeringButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exit" />
 
         <!--    <TextView-->
         <!--        android:layout_height="5dp"-->

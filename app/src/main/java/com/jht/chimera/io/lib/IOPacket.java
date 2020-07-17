@@ -234,12 +234,12 @@ public class IOPacket {
 //                Log.d("McuPacketManager","Command Type: " + commandType.toString());
 
                 if(result == parseResult.Success) {
-//                    if (commandType == CommandType.UPDATE) {
-//                        McuUpdateManager.Instance.updateProcess(commandCode, payload, commandType);
-//                        if(McuProtocol.McuCommands.fromInt(commandCode) == McuProtocol.McuCommands.OPERATION_MODE)
-//                            McuPacketManager.getInstance().rxProcess(commandCode, payload, CommandType.REPLAY);
-//                    }
-//                    else
+                    if (commandType == CommandType.UPDATE) {
+                        McuUpdateManager.Instance.updateProcess(commandCode, payload, commandType);
+                        if(IOProtocol.Commands.fromInt(commandCode) == IOProtocol.Commands.OPERATION_MODE)
+                            IOManager.getInstance().rxProcess(commandCode, payload, CommandType.REPLAY);
+                    }
+                    else
                         IOManager.getInstance().rxProcess(commandCode, payload, commandType);
                     rxData = new byte[0];
                 }
