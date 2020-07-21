@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:state_pressed="false" android:drawable="@android:color/black" android:color="@android:color/black"/>
-    <item android:state_pressed="true" android:drawable="@color/keypad_back_button_selected" android:color="@color/keypad_back_button_selected"/>
-</selector>
