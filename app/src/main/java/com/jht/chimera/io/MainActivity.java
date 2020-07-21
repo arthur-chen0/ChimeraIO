@@ -61,6 +61,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void init(){
 
+        AlertDialog initDialog = new AlertDialog.Builder(MainActivity.this, android.R.style.Theme_DeviceDefault_Dialog_Alert).create();
+
+        initDialog.setMessage("Initial the main activity...");
+        initDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        initDialog.setCancelable(false);
+        WindowManager.LayoutParams initDialogWindow = initDialog.getWindow().getAttributes();
+        initDialogWindow.format = PixelFormat.TRANSLUCENT;
+        initDialogWindow.alpha = 0.5f;
+
+        initDialog.show();
+
         //Start MCU communication
         IOManager.getInstance().start(new SerialPort(DEVICE_PATH,serialPortSetting()));
         IOManager.getInstance().setCallback(mcuCallback);
@@ -209,6 +220,10 @@ public class MainActivity extends AppCompatActivity {
             onDestroy();
             System.exit(0);
         });
+
+        new JHTTimer(3000,() -> {
+            initDialog.dismiss();
+        }).start();
 
     }
 
