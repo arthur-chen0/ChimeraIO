@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.setView(dialogView);
 
                         progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        progressDialog.setCancelable(false);
                         WindowManager.LayoutParams dialogWindow = progressDialog.getWindow().getAttributes();
                         dialogWindow.format = PixelFormat.TRANSLUCENT;
                         dialogWindow.alpha = 0.6f;

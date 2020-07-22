@@ -40,7 +40,7 @@ apply from: 'device-control.gradle'
 ext {
     // 1.0.0
     major_number = 1
-    minor_number = 1
+    minor_number = 2
     patch_number = 0
 
     // To enable beta phase, change the beta_number above 0.
