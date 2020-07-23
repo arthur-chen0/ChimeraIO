@@ -7,9 +7,8 @@ import android.util.Log;
 
 import com.jht.androidcommonalgorithms.timer.JHTTimer;
 
-import com.jht.chimera.io.lib.HardwareControlDevices;
-import com.jht.chimera.io.lib.IOManager;
-import com.jht.chimera.io.lib.PowerType;
+import com.jht.chimera.io.commLib.IOManager;
+import com.jht.chimera.io.commLib.PowerType;
 
 
 public class DataHandler {

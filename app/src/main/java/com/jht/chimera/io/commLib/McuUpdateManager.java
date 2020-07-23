@@ -1,20 +1,17 @@
-package com.jht.chimera.io.lib;
+package com.jht.chimera.io.commLib;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 
 import com.jht.androidcommonalgorithms.events.JHTNotification;
 import com.jht.androidcommonalgorithms.timer.JHTTimer;
 import com.jht.serialport.SerialPort;
-import com.jht.chimera.io.lib.IOPacket.parseState;
-import com.jht.chimera.io.lib.IOPacket.CommandType;
+import com.jht.chimera.io.commLib.IOPacket.parseState;
+import com.jht.chimera.io.commLib.IOPacket.CommandType;
 
 import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;

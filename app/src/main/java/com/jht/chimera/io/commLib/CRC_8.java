@@ -1,4 +1,4 @@
-package com.jht.chimera.io.lib;
+package com.jht.chimera.io.commLib;
 
 public class CRC_8 {
 

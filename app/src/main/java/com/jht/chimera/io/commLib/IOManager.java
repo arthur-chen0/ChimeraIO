@@ -1,16 +1,15 @@
-package com.jht.chimera.io.lib;
+package com.jht.chimera.io.commLib;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 
 import com.jht.androidcommonalgorithms.events.JHTNotification;
 import com.jht.androidcommonalgorithms.timer.PeriodicTimer;
 import com.jht.serialport.SerialPort;
-import com.jht.chimera.io.lib.IOPacket.parseState;
-import com.jht.chimera.io.lib.IOPacket.parseResult;
-import com.jht.chimera.io.lib.IOPacket.CommandType;
+import com.jht.chimera.io.commLib.IOPacket.parseState;
+import com.jht.chimera.io.commLib.IOPacket.parseResult;
+import com.jht.chimera.io.commLib.IOPacket.CommandType;
 
 import java.io.IOException;
 import java.io.InputStream;

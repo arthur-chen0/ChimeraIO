@@ -1,4 +1,4 @@
-package com.jht.chimera.io.lib;
+package com.jht.chimera.io.commLib;
 
 import android.annotation.SuppressLint;
 import android.widget.CompoundButton;
