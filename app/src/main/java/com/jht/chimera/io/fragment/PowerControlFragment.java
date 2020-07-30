@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
 public class PowerControlFragment extends Fragment {
 
@@ -78,9 +79,9 @@ public class PowerControlFragment extends Fragment {
         initDialog.setMessage("Initial the main activity...");
         initDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         initDialog.setCancelable(false);
-        WindowManager.LayoutParams initDialogWindow = initDialog.getWindow().getAttributes();
+        WindowManager.LayoutParams initDialogWindow = Objects.requireNonNull(initDialog.getWindow()).getAttributes();
         initDialogWindow.format = PixelFormat.TRANSLUCENT;
-        initDialogWindow.alpha = 0.6f;
+        initDialogWindow.alpha = 0.8f;
 
         initDialog.show();
 
@@ -129,88 +130,7 @@ public class PowerControlFragment extends Fragment {
             }
         }).start();
 
-        view.findViewById(R.id.btn_update).setOnClickListener(view1 -> {
-            try {
-//                String fileName[] = MainActivity.this.getAssets().list("");
-                ArrayList<String> fileList = new ArrayList(Arrays.asList(getActivity().getAssets().list("")));
-                Log.d(TAG, "Update File size " + fileList.size());
-
-                if(fileList.size() > 0){
-                    AlertDialog.Builder updateDialog = new AlertDialog.Builder(getActivity());
-
-                    updateDialog.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, fileList), (dialog, which) -> {
-
-                        Log.d("Update", "File Name: " + fileList.get(which));
-                        cmdHandler.updateIO(fileList.get(which));
-
-//                        AlertDialog.Builder progressDialog = new AlertDialog.Builder(MainActivity.this);
-                        AlertDialog progressDialog = new AlertDialog.Builder(getActivity(), android.R.style.Theme_DeviceDefault_Dialog_Alert).create();
-//                        final View dialogView = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_progress_customize,null);
-                        View dialogView = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_customize,null);
-//                        progressDialog.setTitle("MCU Firmware Updating...");
-                        progressDialog.setView(dialogView);
-
-                        progressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                        progressDialog.setCancelable(false);
-                        WindowManager.LayoutParams dialogWindow = progressDialog.getWindow().getAttributes();
-                        dialogWindow.format = PixelFormat.TRANSLUCENT;
-                        dialogWindow.alpha = 0.6f;
-
-                        final TextView message = dialogView.findViewById(R.id.text_dialog_message);
-
-                        progressDialog.show();
-
-                        BroadcastReceiver ioResult = new BroadcastReceiver() {
-                            @Override
-                            public void onReceive(Context context, Intent intent) {
-                                float percent = intent.getFloatExtra("percent", 0.0f);
-                                int status = intent.getIntExtra("status", 0);
-
-                                getActivity().runOnUiThread(() -> {
-
-//                                    message.getBackground().setAlpha(50);
-                                    switch (status) {
-                                        case 1028: //start update
-                                            message.setText("MCU Update Started");
-                                            break;
-                                        case 1026: //update processing
-                                            message.setText(String.format(Locale.ENGLISH, "MCU Update %.0f%s", percent * 1.0f, "%"));
-                                            Log.d(TAG, "onReceive: MCU update processing... " + percent * 1.0f);
-                                            break;
-                                        case 1032: //end update
-                                            message.setText("IO Update Completed");
-                                            break;
-                                        case 1:
-                                            message.setText("IO Update Failed: MCU no response");
-                                            Log.e(TAG, "IO update failed, MCU no response");
-                                            break;
-                                    }
-                                });
-
-                            }
-                        };
-                        getActivity().registerReceiver(ioResult, new IntentFilter("com.jht.updateio.result"));
-
-                    });
-
-                    updateDialog.show();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-        });
-
-//        view.findViewById(R.id.btn_Exit).setOnClickListener(view -> {
-//            this.finish();
-//            onDestroy();
-//            System.exit(0);
-//        });
-
-        new JHTTimer(3000,() -> {
-            initDialog.dismiss();
-        }).start();
+        new JHTTimer(3000, initDialog::dismiss).start();
 
     }
 
@@ -240,7 +160,7 @@ public class PowerControlFragment extends Fragment {
         @Override
         public void version(int version) {
             String versionString = "" + (version >> 8 & 0x00ff) + "." + (version & 0x00ff);
-            getActivity().runOnUiThread(() -> {
+            Objects.requireNonNull(getActivity()).runOnUiThread(() -> {
                 Log.d(TAG, "text_ioVersion: " + versionString);
 //                text_ioVersion.setText(versionString);
             });

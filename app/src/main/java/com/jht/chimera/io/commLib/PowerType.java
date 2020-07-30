@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class PowerType {
 
-    public class PowerSource{
+    public static class PowerSource{
         private String name;
         private byte id;
         private Switch powerSwitch;
@@ -43,12 +43,12 @@ public class PowerType {
 
     public ArrayList<PowerSource> powerTypeMap = new ArrayList();
 
-    public ArrayList getPowerTypeMap(){
+    public ArrayList<PowerSource> getPowerTypeMap(){
         return powerTypeMap;
     }
 
     public void addPower(String name, byte id, Switch powerSwitch){
-        powerTypeMap.add(new PowerSource(name,id,powerSwitch));
+        powerTypeMap.add(new PowerSource(name, id, powerSwitch));
     }
 
     public Switch getSwitchByID(byte id){

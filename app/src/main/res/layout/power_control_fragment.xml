@@ -16,68 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ App info -->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="350dp"-->
-<!--                        style="@style/GeneralEngineeringTextHeading"-->
-<!--                        android:text="APP Version" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/text_app_version"-->
-<!--                        style="@style/GeneralEngineeringTextHeading"/>-->
-
-<!--                </LinearLayout>-->
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical">-->
-
-<!--                    <TextView-->
-<!--                        android:layout_width="350dp"-->
-<!--                        style="@style/GeneralEngineeringTextHeading"-->
-<!--                        android:text="MCU Version" />-->
-
-<!--                    <TextView-->
-<!--                        android:id="@+id/text_io_version"-->
-<!--                        style="@style/GeneralEngineeringTextHeading"/>-->
-
-<!--                </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="350dp"-->
-<!--                    style="@style/GeneralEngineeringTextHeading"-->
-<!--                    android:text="Memory" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/text_Memory_usage"-->
-<!--                    style="@style/GeneralEngineeringTextHeading"/>-->
-
-<!--            </LinearLayout>-->
-
-<!--            </LinearLayout>-->
-
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
-
-            <RelativeLayout
-                style="@style/engineering_line_break" />
-
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Power switch label -->
 
             <TextView
@@ -88,7 +26,7 @@
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 1 -->
 
             <TextView
-                android:layout_height="15dp"
+                android:layout_height="25dp"
                 style="@style/GeneralEngineeringTextHeading"/>
 
             <LinearLayout
@@ -105,7 +43,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -117,7 +55,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -129,7 +67,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -145,7 +83,7 @@
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 2 -->
 
             <TextView
-                android:layout_height="15dp"
+                android:layout_height="25dp"
                 style="@style/GeneralEngineeringTextHeading"/>
 
             <LinearLayout
@@ -162,7 +100,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -174,7 +112,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -186,7 +124,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -202,7 +140,7 @@
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 3 -->
 
             <TextView
-                android:layout_height="15dp"
+                android:layout_height="25dp"
                 style="@style/GeneralEngineeringTextHeading"/>
 
             <LinearLayout
@@ -219,7 +157,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -231,7 +169,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -243,7 +181,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -259,7 +197,7 @@
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 4 -->
 
             <TextView
-                android:layout_height="15dp"
+                android:layout_height="25dp"
                 style="@style/GeneralEngineeringTextHeading"/>
 
             <LinearLayout
@@ -276,7 +214,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="60dp"
+                    android:layout_width="120dp"
                     style="@style/GeneralEngineeringTextHeading"/>
 
                 <Switch
@@ -288,126 +226,6 @@
                     android:textSize="18sp"/>
 
             </LinearLayout>
-
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
-
-            <!--        <RelativeLayout-->
-            <!--            style="@style/engineering_line_break"/>-->
-
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Fan -->
-            <!--        <LinearLayout-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:orientation="horizontal">-->
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/edit_fan_speed"-->
-            <!--                android:layout_width="200dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:inputType="number" />-->
-
-
-            <!--            <TextView-->
-            <!--                android:layout_width="150dp"-->
-            <!--                style="@style/GeneralEngineeringTextHeading" />-->
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:orientation="vertical">-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="350dp"-->
-            <!--                    style="@style/GeneralEngineeringTextHeading"-->
-            <!--                    android:text="Fan RPM" />-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/text_fan_rpm"-->
-            <!--                    style="@style/GeneralEngineeringTextHeading"/>-->
-
-            <!--            </LinearLayout>-->
-
-            <!--            <Button-->
-            <!--                android:id="@+id/btn_set_fan_speed"-->
-            <!--                style="@style/GeneralEngineeringButton"-->
-            <!--                android:layout_width="350dp"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:text="Set Fan Speed" />-->
-
-
-            <!--        </LinearLayout>-->
-
-            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Separate line -->
-
-            <RelativeLayout
-                style="@style/engineering_line_break"/>
-
-            <Button
-                android:id="@+id/btn_update"
-                style="@style/GeneralEngineeringButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Update MCU Firmware" />
-
-            <TextView
-                android:layout_height="5dp"
-                style="@style/GeneralEngineeringTextHeading"/>
-
-
-            <!--    <TextView-->
-            <!--        android:layout_height="5dp"-->
-            <!--        style="@style/GeneralEngineeringTextHeading"/>-->
-
-            <!--    <Button-->
-            <!--        android:id="@+id/btn_show_log"-->
-            <!--        style="@style/GeneralEngineeringButton"-->
-            <!--        android:layout_width="match_parent"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        android:text="Detail Log" />-->
-
-
-            <!--        <LinearLayout-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:orientation="vertical">-->
-
-            <!--            <TextView-->
-            <!--                android:layout_height="15dp"-->
-            <!--                style="@style/GeneralEngineeringTextHeading"/>-->
-
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:orientation="horizontal">-->
-
-            <!--                <TextView-->
-            <!--                    android:layout_width="350dp"-->
-            <!--                    style="@style/GeneralEngineeringTextHeading"-->
-            <!--                    android:text="Running Message" />-->
-
-
-            <!--                <Button-->
-            <!--                    android:id="@+id/btn_show_log"-->
-            <!--                    style="@style/GeneralEngineeringButton"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="25dp"-->
-            <!--                    android:text="Detail Log" />-->
-
-            <!--            </LinearLayout>-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/text_message"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:textColor="#FFFFFFFF"-->
-            <!--                android:textSize="15dp"-->
-            <!--                android:ellipsize="start"-->
-            <!--                android:scrollbars="vertical"-->
-            <!--                android:singleLine="false"-->
-            <!--                android:maxLines="50"/>-->
-
-            <!--        </LinearLayout>-->
-
 
         </LinearLayout>
 
