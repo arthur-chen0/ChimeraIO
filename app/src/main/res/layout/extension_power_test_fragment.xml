@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/EngineeringPage"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Console Voltage" />
+
+                    <TextView
+                        android:id="@+id/text_console_voltage"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Console Current" />
+
+                    <TextView
+                        android:id="@+id/text_console_current"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Extension Voltage" />
+
+                    <TextView
+                        android:id="@+id/text_extension_voltage"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Extension Current" />
+
+                    <TextView
+                        android:id="@+id/text_extension_current"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Test Round" />
+
+                    <TextView
+                        android:id="@+id/text_text_counter"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Current AVG" />
+
+                    <Spinner
+                        android:id="@+id/spinner_current_avg"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        style="@style/GeneralEngineeringTextHeading" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--    <Switch-->
+            <!--        android:id="@+id/switch_extension_power"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        style="@style/GeneralEngineeringTextHeading"-->
+            <!--        android:text="Extension Power switch  " />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="350dp"
+                    style="@style/GeneralEngineeringTextHeading"
+                    android:text="Extension Power State" />
+
+                <TextView
+                    android:id="@+id/text_extension_power_state"
+                    style="@style/GeneralEngineeringTextHeading"/>
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                style="@style/engineering_line_break"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edit_fan_speed"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    style="@style/GeneralEngineeringTextHeading" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Fan RPM" />
+
+                    <TextView
+                        android:id="@+id/text_fan_rpm"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_set_fan_speed"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:text="Set Fan Speed" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                style="@style/engineering_line_break" />
+
+            <Button
+                android:id="@+id/btn_start"
+                style="@style/GeneralEngineeringButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start Test" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="15dp"
+                    style="@style/GeneralEngineeringTextHeading"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="350dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Running Message" />
+
+                    <!--                    <Button-->
+                    <!--                        android:id="@+id/btn_start_monitor"-->
+                    <!--                        style="@style/GeneralEngineeringButton"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="25dp"-->
+                    <!--                        android:text="Start Monitor" />-->
+
+                    <!--                    <TextView-->
+                    <!--                        android:layout_height="15dp"-->
+                    <!--                        android:layout_width="15dp"-->
+                    <!--                        style="@style/GeneralEngineeringTextHeading"/>-->
+
+                    <Button
+                        android:id="@+id/btn_show_log"
+                        style="@style/GeneralEngineeringButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:text="Detail Log" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="15dp"
+                    android:ellipsize="start"
+                    android:scrollbars="vertical"
+                    android:singleLine="false"
+                    android:maxLines="50"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
