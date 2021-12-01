@@ -1,3 +1,5 @@
+import com.jht.Config
+import com.jht.Versions
 apply plugin: 'com.android.application'
 
 android {
@@ -7,8 +9,10 @@ android {
         applicationId "com.jht.chimera.chimeraio"
         minSdkVersion 28
         targetSdkVersion 29
-        versionCode generateVersionCode(major_number, minor_number, patch_number, beta_number)
-        versionName generateVersionName(major_number, minor_number, patch_number, beta_number, postfix_name)
+//        versionCode generateVersionCode(major_number, minor_number, patch_number, beta_number)
+//        versionName generateVersionName(major_number, minor_number, patch_number, beta_number, postfix_name)
+        versionCode Config.Android.versionCode
+        versionName Config.Android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -29,9 +33,12 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.2.0-alpha06'
-    implementation(group: 'AndroidSerialPort', name: 'serialport', version: '1.0.0.3', ext: 'aar')
-    implementation(group: 'android_common_algorithms', name: 'android_common_algorithms', version: '1.0.0.5-brenden-SNAPSHOT', ext: 'aar')
-    implementation project(path: ':ui_android_widgets')
+    implementation "jhtandroidserialport:serialport:${Versions.jhtandroidserialport}"
+//    implementation(group: 'android_common_algorithms', name: 'android_common_algorithms', version: '1.0.0.5-brenden-SNAPSHOT', ext: 'aar')
+    implementation "android_common_algorithms:android_common_algorithms:${Versions.androidCommonAlgorithms}"
+//    implementation project(path: ':ui_android_widgets')
+    implementation "android_ui_widgets:android_ui_widgets:${Versions.androidUIWidgets}"
+    implementation "androidx.gridlayout:gridlayout:${Versions.gridlayout}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

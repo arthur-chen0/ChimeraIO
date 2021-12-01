@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/EngineeringPage"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Port label -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/selector_device_path"
+                    android:layout_width="200sp"
+                    android:layout_height="50sp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp" />
+
+                <Spinner
+                    android:id="@+id/selector_baud_rate"
+                    android:layout_width="200sp"
+                    android:layout_height="50sp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp" />
+
+                <Button
+                    android:id="@+id/btn_open"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp"
+                    android:text="open" />
+
+                <Button
+                    android:id="@+id/btn_erp"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp"
+                    android:text="erp" />
+
+                <Button
+                    android:id="@+id/btn_reboot"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="50sp"
+                    android:text="reboot" />
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 1 -->
+
+            <RelativeLayout
+                style="@style/engineering_line_break"/>
+
+            <TextView
+                android:layout_width="350dp"
+                style="@style/GeneralEngineeringTextHeading"
+                android:text="POWER CONTROL" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/rs485_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="RS485"
+                    android:textSize="18sp" />
+
+
+                <Switch
+                    android:id="@+id/csafe_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="CSAFE"
+                    android:textSize="18sp"/>
+
+
+                <Switch
+                    android:id="@+id/hdmi_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="HDMI"
+                    android:textSize="18sp"/>
+
+
+                <Switch
+                    android:id="@+id/audio_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="AUDIO"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 2 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/voice_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="VOICE"
+                    android:textSize="18sp" />
+
+                <Switch
+                    android:id="@+id/rfid_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="RFID"
+                    android:textSize="18sp"/>
+
+                <Switch
+                    android:id="@+id/qi_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="QI"
+                    android:textSize="18sp"/>
+
+                <Switch
+                    android:id="@+id/tv_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="TV"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 3 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/cab_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="CAB"
+                    android:textSize="18sp" />
+
+
+                <Switch
+                    android:id="@+id/ipod_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="IPDD"
+                    android:textSize="18sp"/>
+
+                <Switch
+                    android:id="@+id/salutron_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="8700"
+                    android:textSize="18sp"/>
+
+                <Switch
+                    android:id="@+id/gymkit_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="GYMKIT"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 4 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Switch
+                    android:id="@+id/usb_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="USB"
+                    android:textSize="18sp" />
+
+                <Switch
+                    android:id="@+id/ext14_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="EXT_14"
+                    android:textSize="18sp"/>
+
+                <Switch
+                    android:id="@+id/qi_vol_switch"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="25sp"
+                    android:switchPadding="5dp"
+                    android:text="QI_9V"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power monitor -->
+
+            <RelativeLayout
+                style="@style/engineering_line_break"
+                app:layout_columnSpan="@integer/eng_cols_per_page" />
+
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/GeneralEngineeringTextHeading"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            android:text="Main Power" />
+
+                        <TextView
+                            android:id="@+id/text_main_power"
+                            style="@style/GeneralEngineeringTextValue"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            android:singleLine="false" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/GeneralEngineeringTextHeading"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            android:text="Extend Power" />
+
+                        <TextView
+                            android:id="@+id/text_extend_power"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            style="@style/GeneralEngineeringTextValue"
+                            android:singleLine="false" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/GeneralEngineeringTextHeading"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            android:text="USB Power" />
+
+                        <TextView
+                            android:id="@+id/text_usb_power"
+                            style="@style/GeneralEngineeringTextValue"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            android:singleLine="false" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="20sp"
+                            style="@style/GeneralEngineeringTextHeading"
+                            android:text="Interval(100ms)" />
+
+                        <EditText
+                            android:id="@+id/edit_monitor_interval"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20sp"
+                            android:layout_marginTop="20sp"
+                            android:hint="100"
+                            android:inputType="number" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_monitor_start"
+                        style="@style/GeneralEngineeringButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50sp"
+                        android:layout_marginTop="50sp"
+                        android:text="start" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Fan control -->
+
+            <RelativeLayout
+                style="@style/engineering_line_break"/>
+
+            <TextView
+                android:layout_width="350dp"
+                style="@style/GeneralEngineeringTextHeading"
+                android:text="FAN CONTROL" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        android:layout_marginLeft="20sp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Fan Speed" />
+
+                    <EditText
+                        android:id="@+id/edit_fan_speed"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="20sp"
+                        android:hint="10-100"
+                        android:inputType="number" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Fan RPM" />
+
+                    <TextView
+                        android:id="@+id/text_fan_rpm"
+                        android:layout_width="200dp"
+                        android:layout_marginTop="20sp"
+                        style="@style/GeneralEngineeringTextHeading"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_set_fan_speed"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="30sp"
+                    android:text="start" />
+
+            </LinearLayout>
+
+            <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Watchdog -->
+
+            <RelativeLayout
+                style="@style/engineering_line_break"/>
+
+            <TextView
+                android:layout_width="350dp"
+                style="@style/GeneralEngineeringTextHeading"
+                android:text="WATCHDOG" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="280dp"
+                        android:layout_marginLeft="20sp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:text="Watchdog Timeout(Minutes)" />
+
+                    <EditText
+                        android:id="@+id/edit_wd_timeout"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="20sp"
+                        android:hint="10"
+                        android:inputType="numberDecimal" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="250dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:layout_marginLeft="20sp"
+                        android:text="Refresh Time(Minutes)" />
+
+                    <EditText
+                        android:id="@+id/edit_refresh_time"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="20sp"
+                        android:hint="1"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_wd_start"
+                    style="@style/GeneralEngineeringButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50sp"
+                    android:layout_marginTop="30sp"
+                    android:text="start" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

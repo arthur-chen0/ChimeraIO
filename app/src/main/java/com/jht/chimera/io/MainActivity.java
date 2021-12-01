@@ -14,6 +14,7 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -150,6 +151,34 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+
+    private ArrayList<FragmentTouchListener> mFragmentTouchListeners = new ArrayList<>();
+
+
+    public void registerFragmentTouchListener(FragmentTouchListener listener) {
+        mFragmentTouchListeners.add(listener);
+    }
+
+
+    public void unRegisterFragmentTouchListener(FragmentTouchListener listener) {
+        mFragmentTouchListeners.remove(listener);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        Log.d(TAG, "dispatchTouchEvent: " + event);
+        for (FragmentTouchListener listener : mFragmentTouchListeners) {
+            listener.onTouchEvent(event);
+        }
+
+        return super.dispatchTouchEvent(event);
+    }
+
+    public interface FragmentTouchListener {
+
+        boolean onTouchEvent(MotionEvent event);
     }
 
 

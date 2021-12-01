@@ -7,11 +7,12 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.jht.chimera.io.fragment.ExtensionPowerTestFragment;
-import com.jht.chimera.io.fragment.PowerControlFragment;
+import com.jht.chimera.io.fragment.MCUFunctionFragment;
+import com.jht.chimera.io.fragment.UartCommTestFragment;
 
 public class CollectionAdapter extends FragmentStateAdapter {
 
-    private static final String[] TAB_TITLES = new String[]{"Power Control", "Extension Power Test"};
+    private static final String[] TAB_TITLES = new String[]{"MCU Function Test", "Uart Communication Test"};
 
 //    private ArrayList<Fragment> arrayList = new ArrayList<>();
 
@@ -25,9 +26,9 @@ public class CollectionAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new PowerControlFragment();
+                return new MCUFunctionFragment();
             case 1:
-                return new ExtensionPowerTestFragment();
+                return new UartCommTestFragment();
         }
         return null;
     }
@@ -43,7 +44,7 @@ public class CollectionAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return TAB_TITLES.length;
     }
 
 

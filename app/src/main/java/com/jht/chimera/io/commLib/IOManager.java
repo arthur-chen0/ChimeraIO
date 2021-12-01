@@ -118,7 +118,20 @@ public class IOManager {
         _txCommandQueue.add(new IOPacket(IOProtocol.Commands.HW_MONITOR, source));
     }
 
-    public void setWatchdog(int timeout) {
+    public void getKeyState(){
+        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.KEY_STATE));
+    }
+
+    public void getRecoveryKey(){
+        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.RECOVERY_STATE));
+    }
+
+    public void getSystemState(){
+        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.SYSTEM_STATE));
+    }
+
+    public void setWatchdog(int timeout, int refreshTime) {
+        Log.d(TAG, "setWatchdog: " + timeout);
         byte[] timeArray = ByteBuffer.allocate(4).putInt(timeout).array();
 
         if (timeout <= 0) {
@@ -135,7 +148,8 @@ public class IOManager {
             }
             watchdogTimer = new PeriodicTimer();
             watchdogTimer.setOnTimer(this::refresh);
-            watchdogTimer.start(0, 1000 * 60);
+            if(refreshTime > 0)
+                watchdogTimer.start(0, refreshTime * 1000 * 60);
         }
     }
 
@@ -181,7 +195,7 @@ public class IOManager {
 
 
     public void enterERP() {
-        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.ERP, (byte) 0x02));
+        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.ERP, (byte) 0x00));
     }
 
 
@@ -234,7 +248,7 @@ public class IOManager {
 
 
     public void powerMonitor(boolean enable,int time) {
-        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.HW_MONITOR, (byte) (enable ? 1 : 0),(byte) time));
+        _txCommandQueue.add(new IOPacket(IOProtocol.Commands.HW_MONITOR_SWITCH, (byte) (enable ? 1 : 0),(byte) time));
     }
 
 
@@ -382,7 +396,8 @@ public class IOManager {
 
     @SuppressWarnings("CharsetObjectCanBeUsed") void rxProcess(int command, byte[] payload, CommandType commandType) {
         IOProtocol.Commands commandCode = IOProtocol.Commands.fromInt(command);
-        Log.d(TAG, "command Code: " + command + "  command name:" + commandCode.toString());
+        if (commandCode != null)
+            Log.d(TAG, "command Code: " + command + "  command name:" + commandCode.toString());
         if(commandCode == null) return;
 
         result = parseState.Success;
@@ -400,6 +415,7 @@ public class IOManager {
                     callback.keyEvent(payload[0],keyValue);
                     break;
                 case SAFEKEY_EVENT:
+                    Log.d(TAG, "rxProcess: safeKeyEvent " + payload[0]);
                     callback.safeKeyEvent(payload[0] == 1);
                     _txEventQueue.add(new IOPacket(IOProtocol.Commands.SAFEKEY_EVENT));
                     break;
@@ -412,27 +428,32 @@ public class IOManager {
                     }
                     break;
                 case LCB_STATUS:
+                    Log.d(TAG, "LCB status: " + payload[0]);
                     _txEventQueue.add(new IOPacket(IOProtocol.Commands.LCB_STATUS));
                     break;
                 case HW_MONITOR_EVENT:
+                    short mainVol, extendVol, usbVol, mainCurrent, extendCurrent;
                     ByteBuffer voltage = ByteBuffer.allocate(2);
                     //console voltage
                     voltage.put(payload[0]);
                     voltage.put(payload[1]);
                     voltage.flip();
-                    callback.consolePowerVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort());
+//                    callback.consolePowerVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort());
+                    mainVol = voltage.order(ByteOrder.LITTLE_ENDIAN).getShort();
                     voltage.clear();
                     //extend voltage
                     voltage.put(payload[2]);
                     voltage.put(payload[3]);
                     voltage.flip();
-                    callback.extendPowerVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort(),false);
+//                    callback.extendPowerVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort(),false);
+                    extendVol = voltage.order(ByteOrder.LITTLE_ENDIAN).getShort();
                     voltage.clear();
                     //usb voltage
                     voltage.put(payload[4]);
                     voltage.put(payload[5]);
                     voltage.flip();
-                    callback.usbVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort());
+//                    callback.usbVoltage(voltage.order(ByteOrder.LITTLE_ENDIAN).getShort());
+                    usbVol = voltage.order(ByteOrder.LITTLE_ENDIAN).getShort();
                     voltage.clear();
 
                     ByteBuffer current = ByteBuffer.allocate(2);
@@ -440,16 +461,27 @@ public class IOManager {
                     current.put(payload[6]);
                     current.put(payload[7]);
                     current.flip();
-                    callback.consolePowerCurrent(current.order(ByteOrder.LITTLE_ENDIAN).getShort());
+//                    callback.consolePowerCurrent(current.order(ByteOrder.LITTLE_ENDIAN).getShort());
+                    mainCurrent = current.order(ByteOrder.LITTLE_ENDIAN).getShort();
                     current.clear();
-                    //extend current
+                    //extend crent
                     current.put(payload[8]);
                     current.put(payload[9]);
                     current.flip();
-                    callback.extendPowerCurrent(current.order(ByteOrder.LITTLE_ENDIAN).getShort());
+//                    callback.extendPowerCurrent(current.order(ByteOrder.LITTLE_ENDIAN).getShort());
+                    extendCurrent = current.order(ByteOrder.LITTLE_ENDIAN).getShort();
                     current.clear();
                     //extend error
                     callback.extendPowerError(payload[10] == 0);
+
+//                    Log.d(TAG, "arthur_power_monitor: mainVol " + mainVol + " extendVol " + extendVol + " usbVol " + usbVol);
+//                    Log.d(TAG, "arthur_power_monitor: mainCurrent " + mainCurrent + " extendCurrent " + extendCurrent);
+
+                    callback.powerMonitorEvent(mainVol, extendVol, usbVol, mainCurrent, extendCurrent, payload[10] == 0);
+                    break;
+                case QI_STATUS:
+                    Log.d(TAG, "qi status: " + payload[0]);
+                    _txEventQueue.add(new IOPacket(IOProtocol.Commands.QI_STATUS));
                     break;
 
             }
@@ -519,7 +551,16 @@ public class IOManager {
                     callback.boot(payload[0] == 1);
                     break;
                 case HW_MONITOR_STATE:
-                    callback.powerMonitorState(payload[0] == 1);
+                    callback.powerMonitorState(payload[0] == 1, payload[1]);
+                    break;
+                case KEY_STATE:
+                    Log.d(TAG, "key state: " + payload[0] + " " +  payload[1] + " " +  payload[2]);
+                    break;
+                case SYSTEM_STATE:
+                    Log.d(TAG, "system state: " + payload[0]);
+                    break;
+                case RECOVERY_STATE:
+                    Log.d(TAG, "recovery state: " + payload[0]);
                     break;
                 case SEND_CEC_COMMAND:
                     callback.cecCommand(payload[0]);
@@ -614,7 +655,7 @@ public class IOManager {
 //                        Log.d(TAG, "TxThread txPacket Queue size: " + _txPacketQueue.size());
                     if (!_txPacketQueue.isEmpty()) {
 
-                        if (txCommand.getTxMessage().equals("REFRESH") || txCommand.getTxMessage().equals("KEY_EVENT") || txCommand.getTxMessage().equals("SAFEKEY_EVENT") || txCommand.getTxMessage().equals("LCB_STATUS") || txCommand.getTxMessage().equals("DEBUG_MESSAGE")) { //NON-NLS
+                        if (txCommand.getTxMessage().equals("REFRESH") || txCommand.getTxMessage().equals("KEY_EVENT") || txCommand.getTxMessage().equals("SAFEKEY_EVENT") || txCommand.getTxMessage().equals("LCB_STATUS") || txCommand.getTxMessage().equals("DEBUG_MESSAGE")|| txCommand.getTxMessage().equals("QI_STATUS")) { //NON-NLS
                             result = parseState.NoReply;
                             txHandler(_txPacketQueue.poll());
                         } else {

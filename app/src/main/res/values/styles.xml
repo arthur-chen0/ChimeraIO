@@ -65,8 +65,9 @@
     </style>
 
     <style name="GeneralEngineeringTextValue" parent="GeneralEditTextEngineering">
-        <item name="android:inputType">number</item>
+        <item name="android:inputType">textMultiLine</item>
         <item name="input_type">integer_input</item>
+        <item name="android:textSize">15dp</item>
         <item name="android:paddingEnd">20dp</item>
         <item name="android:layout_marginBottom">10dp</item>
     </style>
@@ -80,6 +81,19 @@
         <item name="android:gravity">left|bottom</item>
         <item name="android:textSize">@dimen/jht_setting_title_text_size</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="GeneralEngineeringOptionSelector">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:layout_marginEnd">@dimen/engineering_column_margin</item>-->
+        <item name="android:paddingEnd">20dp</item>
+        <item name="option_popup_padding_start">180dp</item>
+        <item name="option_popup_padding_top">45dp</item>
+        <item name="label_size_dp">20</item>
+        <item name="option_height">@dimen/user_text_info_text</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
     <style name="GeneralEditTextIntEngineering" parent="GeneralEditTextEngineering">

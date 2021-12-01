@@ -24,6 +24,7 @@ public class IOProtocol {
         DEBUG_MESSAGE(     (byte)0x02, (byte)0x02),
         LCB_STATUS(        (byte)0x02, (byte)0x03),
         HW_MONITOR_EVENT(  (byte)0x02, (byte)0x04),
+        QI_STATUS(         (byte)0x02, (byte)0x05),
         //Information/State Commands
         VERSION(           (byte)0x03, (byte)0x00),
         SAFEKEY(           (byte)0x03, (byte)0x01),
@@ -32,7 +33,9 @@ public class IOProtocol {
         LCB_TYPE(          (byte)0x03, (byte)0x04),
         RECOVERY_STATE(    (byte)0x03, (byte)0x05),
         FAN_SPEED(         (byte)0x03, (byte)0x06),
+        SYSTEM_STATE(      (byte)0x03, (byte)0x07),
         HW_MONITOR_STATE(  (byte)0x03, (byte)0x08),
+        KEY_STATE(         (byte)0x03, (byte)0x09),
         HW_MONITOR(        (byte)0x03, (byte)0x0A),
         //Firmware Update Commands
         UPDATE_PARAMETERS( (byte)0x04, (byte)0x00),

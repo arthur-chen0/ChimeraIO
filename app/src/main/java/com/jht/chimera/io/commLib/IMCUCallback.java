@@ -9,10 +9,12 @@ public interface IMCUCallback {
     void boot(boolean state);
     void fanSpeed(byte level, int rpm);
     void lcbType(byte type);
+    void powerMonitorEvent(short mainVol, short extendVol, short usbVol, short mainCurrent, short extendCurrent, boolean extendError);
+
     void consolePowerVoltage(short voltage);
     void extendPowerVoltage(short voltage, boolean check);
     void usbVoltage(short voltage);
-    void powerMonitorState(boolean enable);
+    void powerMonitorState(boolean enable, int interval);
     void consolePowerCurrent(short current);
     void extendPowerCurrent(short current);
     void extendPowerError(boolean error);

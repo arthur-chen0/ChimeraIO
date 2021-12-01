@@ -1,2 +1,2 @@
-include ':app' , ':ui_android_widgets'
+include ':app'
 rootProject.name='Chimera IO'

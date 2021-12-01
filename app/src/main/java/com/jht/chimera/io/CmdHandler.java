@@ -86,17 +86,29 @@ public class CmdHandler {
 
     }
 
+    public void getKeyState(){
+        IOManager.getInstance().getKeyState();
+    }
+
+    public void getRecoveryKey(){
+        IOManager.getInstance().getRecoveryKey();
+    }
+
+    public void getSystemState(){
+        IOManager.getInstance().getSystemState();
+    }
+
     public void setKeyDebounceTime(int time, int time2, int gapTime){
         IOManager.getInstance().setKeyDebounceTime(time, time2, gapTime);
     }
 
-    public void setWatchdog(int timeout) {
-        IOManager.getInstance().setWatchdog(timeout);
+    public void setWatchdog(float timeout, float refreshTime) {
+        IOManager.getInstance().setWatchdog((int)(timeout * 1000 * 60), (int)refreshTime);
     }
 
-    //public void refresh() {
-    //    McuPacketManager.getInstance().refresh();
-    //}
+    public void refresh() {
+        IOManager.getInstance().refresh();
+    }
 
     public void setTone(int type) {
         if (type >= 0 && type <= 2)

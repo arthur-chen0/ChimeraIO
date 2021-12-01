@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="serialPorts">
+        <item >"/dev/ttymxc0"</item>
+        <item >"/dev/ttymxc1"</item>
+        <item >"/dev/ttymxc2"</item>
+        <item >"/dev/ttymxc3"</item>
+        <item >"/dev/ttyS0"</item>
+        <item >"/dev/ttyS1"</item>
+        <item >"/dev/ttyS2"</item>
+        <item >"/dev/ttyS3"</item>
+        <item >"/dev/ttyS4"</item>
+        <item >"/dev/ttyS5"</item>
+        <item >"/dev/ttyS6"</item>
+        <item >"/dev/ttyS7"</item>
+    </string-array>
+</resources>
