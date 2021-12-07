@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<resources>
-    <string name="datamatrix_content_provider_authority">com.jht.datamatrixservice.contentprovider</string>
-</resources>

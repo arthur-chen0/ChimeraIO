@@ -25,6 +25,12 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
 }
 
 dependencies {
@@ -39,6 +45,7 @@ dependencies {
 //    implementation project(path: ':ui_android_widgets')
     implementation "android_ui_widgets:android_ui_widgets:${Versions.androidUIWidgets}"
     implementation "androidx.gridlayout:gridlayout:${Versions.gridlayout}"
+    implementation "org.jetbrains:annotations:${Versions.jetbrains}"
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

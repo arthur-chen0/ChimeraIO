@@ -141,7 +141,7 @@ public class CmdHandler {
         }
         else {
             if (fanStateTimer == null) {
-                fanStateTimer = new PeriodicTimer(5000, 5000, this::getFanSpeed);
+                fanStateTimer = new PeriodicTimer(1000, 3000, this::getFanSpeed);
                 fanStateTimer.start();
             }
         }

@@ -65,7 +65,7 @@
     </style>
 
     <style name="GeneralEngineeringTextValue" parent="GeneralEditTextEngineering">
-        <item name="android:inputType">textMultiLine</item>
+        <item name="android:inputType">textMultiLine|textNoSuggestions</item>
         <item name="input_type">integer_input</item>
         <item name="android:textSize">15dp</item>
         <item name="android:paddingEnd">20dp</item>

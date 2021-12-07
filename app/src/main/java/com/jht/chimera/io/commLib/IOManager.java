@@ -503,7 +503,7 @@ public class IOManager {
 //                case FAN:
 //                case POWER:
                 case ERP:
-//                    ExecuteAsRoot.runSyncCommand();
+//                    com.jht.chimera.io.ExecuteAsRoot.runSyncCommand();
 //                    DataMatrix.sendEvent(HALKeys.ACTION_SHUTDOWN);
                     break;
 //                case DEBUG:

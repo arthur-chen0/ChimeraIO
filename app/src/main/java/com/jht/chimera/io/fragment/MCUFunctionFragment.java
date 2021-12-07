@@ -17,7 +17,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -29,7 +28,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.jht.androidcommonalgorithms.timer.JHTTimer;
-import com.jht.androiduiwidgets.dialog.DialogDatePicker;
 import com.jht.chimera.io.CmdHandler;
 import com.jht.chimera.io.DataHandler;
 import com.jht.chimera.io.MainActivity;

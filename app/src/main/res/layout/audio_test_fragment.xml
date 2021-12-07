@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/EngineeringPage">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        android:scrollbarAlwaysDrawVerticalTrack="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <Spinner
+                        android:id="@+id/selector_audio_source"
+                        android:layout_width="350sp"
+                        android:layout_height="50sp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="50sp" />
+
+                    <Button
+                        android:id="@+id/btn_audio_open"
+                        style="@style/GeneralEngineeringButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="50sp"
+                        android:text="open" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="200dp"
+                        style="@style/GeneralEngineeringTextHeading"
+                        android:layout_marginLeft="20sp"
+                        android:layout_marginTop="50sp"
+                        android:text="Tinymix parameter" />
+
+                    <RelativeLayout
+                        style="@style/engineering_line_break"/>
+
+                    <TextView
+                        android:id="@+id/text_tinymix_data"
+                        style="@style/GeneralEngineeringTextValue"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="20sp"
+                        android:singleLine="false"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
