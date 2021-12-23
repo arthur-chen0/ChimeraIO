@@ -1,5 +1,7 @@
 package com.jht.chimera.io;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,7 +14,7 @@ import com.jht.chimera.io.fragment.MCUFunctionFragment;
 import com.jht.chimera.io.fragment.UartCommTestFragment;
 
 public class CollectionAdapter extends FragmentStateAdapter {
-
+    private static final String TAG = CollectionAdapter.class.getSimpleName();
     private static final String[] TAB_TITLES = new String[]{"MCU Function Test", "Uart Communication Test", "Audio Test"};
 
 //    private ArrayList<Fragment> arrayList = new ArrayList<>();
@@ -25,6 +27,7 @@ public class CollectionAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+        Log.d(TAG, "createFragment: "+position);
         switch (position){
             case 0:
                 return new MCUFunctionFragment();
@@ -33,6 +36,7 @@ public class CollectionAdapter extends FragmentStateAdapter {
             case 2:
                 return new AudioTestFragment();
         }
+
         return null;
     }
 

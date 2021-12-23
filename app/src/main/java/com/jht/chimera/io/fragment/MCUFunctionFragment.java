@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jht.androidcommonalgorithms.timer.JHTTimer;
 import com.jht.androidcommonalgorithms.timer.PeriodicTimer;
@@ -101,6 +102,7 @@ public class MCUFunctionFragment extends Fragment {
     private EditText edit_refresh_time;
     private EditText edit_monitor_interval;
     private Switch switch_qi_vol;
+    private MainActivity.FragmentTouchListener listener;
 
     static volatile PeriodicTimer mTimer = new PeriodicTimer();
 
@@ -123,20 +125,7 @@ public class MCUFunctionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
 
-        ((MainActivity) this.getActivity()).registerFragmentTouchListener(event -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (inputMethodManager.isAcceptingText()) {
-                    Log.d(TAG, "arthur_trace: hide keyboard");
-                    ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
-                }
-            }
-
-            return true;
-        });
-
         try {
-
-
             mTimer.setOnTimer(() -> {
                 boolean isUSBConnected = new File("/mnt/media_rw/udisk").exists();
                 Log.d(TAG, "USBMountManager: usb is connected " + isUSBConnected);
@@ -147,6 +136,31 @@ public class MCUFunctionFragment extends Fragment {
             Log.w(TAG, e);
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        listener = new MainActivity.FragmentTouchListener() {
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (inputMethodManager.isAcceptingText()) {
+                        Log.d(TAG, "arthur_trace: hide keyboard");
+                        ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
+                    }
+                }
+                return true;
+            }
+        };
+        ((MainActivity) this.getActivity()).registerFragmentTouchListener(listener);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ((MainActivity) this.getActivity()).unRegisterFragmentTouchListener(listener);
     }
 
 

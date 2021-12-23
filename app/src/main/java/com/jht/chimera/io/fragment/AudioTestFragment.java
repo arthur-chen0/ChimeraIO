@@ -41,6 +41,7 @@ public class AudioTestFragment extends Fragment {
 
     private Button btn_open;
     private TextView text_tinymix_data;
+    private MainActivity.FragmentTouchListener listener;
 
     @Override
     public  void onCreate(Bundle savedInstanceState) {
@@ -61,17 +62,6 @@ public class AudioTestFragment extends Fragment {
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        ((MainActivity) this.getActivity()).registerFragmentTouchListener(event -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (inputMethodManager.isAcceptingText()) {
-                    Log.d(TAG, "arthur_trace: hide keyboard");
-                    ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
-                }
-            }
-
-            return true;
-        });
-
         ExecuteAsRoot.chmod("777", "/dev/snd/controlC2");
 
     }
@@ -116,5 +106,28 @@ public class AudioTestFragment extends Fragment {
         return outputData[0];
   }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        listener = new MainActivity.FragmentTouchListener() {
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (inputMethodManager.isAcceptingText()) {
+                        Log.d(TAG, "arthur_trace: hide keyboard");
+                        ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
+                    }
+                }
+                return true;
+            }
+        };
+        ((MainActivity) this.getActivity()).registerFragmentTouchListener(listener);
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ((MainActivity) this.getActivity()).unRegisterFragmentTouchListener(listener);
+    }
 }

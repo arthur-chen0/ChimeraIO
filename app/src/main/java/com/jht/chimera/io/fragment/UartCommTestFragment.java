@@ -55,6 +55,7 @@ public class UartCommTestFragment extends Fragment {
 
     private ArrayList<String> dataArrlist = new ArrayList<>();
     private StringBuilder log = new StringBuilder();
+    private MainActivity.FragmentTouchListener listener;
 
     @Override
     public  void onCreate(Bundle savedInstanceState) {
@@ -74,17 +75,6 @@ public class UartCommTestFragment extends Fragment {
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
-        ((MainActivity) this.getActivity()).registerFragmentTouchListener(event -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (inputMethodManager.isAcceptingText()) {
-                    Log.d(TAG, "arthur_trace: hide keyboard");
-                    ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
-                }
-            }
-
-            return true;
-        });
-
     }
 
     public void init(View view){
@@ -183,4 +173,29 @@ public class UartCommTestFragment extends Fragment {
             });
         }
     };
+    @Override
+    public void onResume() {
+        super.onResume();
+        listener = new MainActivity.FragmentTouchListener() {
+            @Override
+            public boolean onTouchEvent(MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (inputMethodManager.isAcceptingText()) {
+                        Log.d(TAG, "arthur_trace: hide keyboard");
+                        ViewCompat.getWindowInsetsController(requireView()).hide(WindowInsetsCompat.Type.ime());
+                    }
+                }
+                return true;
+            }
+        };
+        ((MainActivity) this.getActivity()).registerFragmentTouchListener(listener);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        ((MainActivity) this.getActivity()).unRegisterFragmentTouchListener(listener);
+    }
+
 }
