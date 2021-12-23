@@ -169,10 +169,9 @@ public class UartCommTestFragment extends Fragment {
         public void ondReceived(String data) {
             requireActivity().runOnUiThread(() -> {
                 Log.d("arthur_test", "ondReceived: " + data);
-                Date currenttime = Calendar.getInstance().getTime();
                 DateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 
-                String msg = timeFormat.format(currenttime) + "  " + device_path_selector.getSelectedItem() + ": " + data + System.getProperty("line.separator");
+                String msg = timeFormat.format(Calendar.getInstance().getTime()) + "  " + device_path_selector.getSelectedItem() + ": " + data + System.getProperty("line.separator");
                 if (dataArrlist.size() >= 10)
                     dataArrlist.remove(0);
                 dataArrlist.add(msg);

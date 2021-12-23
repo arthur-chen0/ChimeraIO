@@ -28,7 +28,6 @@ allprojects {
         jcenter()
         maven(url = "https://gitlab.com/api/v4/projects/20204467/packages/maven")
         maven(url = "https://maven.google.com")
-//        maven(url = "https://dl.bintray.com/videolan/Android/")
         maven(url = "https://download.01.org/crosswalk/releases/crosswalk/android/maven2")
         maven {
             setUrl("https://jht-artifacts.com:8081/artifactory/jht-dev-local")

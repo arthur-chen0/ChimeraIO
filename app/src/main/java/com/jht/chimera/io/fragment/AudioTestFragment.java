@@ -72,7 +72,7 @@ public class AudioTestFragment extends Fragment {
             return true;
         });
 
-//        ExecuteAsRoot.chmod("777", "/dev/snd/controlC2");
+        ExecuteAsRoot.chmod("777", "/dev/snd/controlC2");
 
     }
 

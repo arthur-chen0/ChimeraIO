@@ -81,9 +81,7 @@ public class AudioSourceCodec {
     }
 
     // Native functions.
-    public static native int volumeControl(int ctlMethod, int level, int muteFunction);
     public static native int audioControl(int var0, int var1);
-    public static native String getVersion();
 
     static {
         System.loadLibrary("ChimeraMIXCtl");

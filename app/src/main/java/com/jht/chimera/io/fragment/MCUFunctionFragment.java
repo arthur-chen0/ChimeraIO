@@ -2,15 +2,23 @@ package com.jht.chimera.io.fragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,8 +36,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.jht.androidcommonalgorithms.timer.JHTTimer;
+import com.jht.androidcommonalgorithms.timer.PeriodicTimer;
 import com.jht.chimera.io.CmdHandler;
 import com.jht.chimera.io.DataHandler;
+import com.jht.chimera.io.IOService;
 import com.jht.chimera.io.MainActivity;
 import com.jht.chimera.io.R;
 import com.jht.chimera.io.commLib.HardwareControlDevices;
@@ -38,10 +48,18 @@ import com.jht.chimera.io.commLib.IOManager;
 import com.jht.chimera.io.commLib.PowerType;
 import com.jht.serialport.SerialPort;
 import com.jht.serialport.SerialPortConfiguration;
+import com.opencsv.CSVWriter;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -52,6 +70,8 @@ public class MCUFunctionFragment extends Fragment {
 //    private final String DEVICE_PATH = "/dev/ttymxc3";
 //    private final SerialPortConfiguration.BaudRate BAUD_RATE = SerialPortConfiguration.BaudRate.B115200;
 
+    private String usbPath = "/mnt/media_rw/udisk";
+
     private CmdHandler cmdHandler = new CmdHandler();
     private DataHandler dataHandler = new DataHandler(getActivity());
 
@@ -59,6 +79,9 @@ public class MCUFunctionFragment extends Fragment {
 
     private Context context;
     private InputMethodManager inputMethodManager;
+
+    private CSVWriter fanWriter;
+    private CSVWriter powerWriter;
 
     private TextView text_ioVersion;
     private TextView text_fanRpm;
@@ -78,6 +101,8 @@ public class MCUFunctionFragment extends Fragment {
     private EditText edit_refresh_time;
     private EditText edit_monitor_interval;
     private Switch switch_qi_vol;
+
+    static volatile PeriodicTimer mTimer = new PeriodicTimer();
 
     @Override
     public  void onCreate(Bundle savedInstanceState) {
@@ -108,6 +133,19 @@ public class MCUFunctionFragment extends Fragment {
 
             return true;
         });
+
+        try {
+
+
+            mTimer.setOnTimer(() -> {
+                boolean isUSBConnected = new File("/mnt/media_rw/udisk").exists();
+                Log.d(TAG, "USBMountManager: usb is connected " + isUSBConnected);
+            });
+            mTimer.start(1000, 1000);
+
+        } catch (Exception e) {
+            Log.w(TAG, e);
+        }
 
     }
 
@@ -169,9 +207,38 @@ public class MCUFunctionFragment extends Fragment {
                 if (btn_start_fan.getText().equals("start")) {
                     btn_start_fan.setText("stop");
                     cmdHandler.setFanSpeed(Integer.parseInt(edit_fan_speed.getText().toString()));
+
+                    File file = new File(usbPath);
+                    if(file.exists()){
+                        Log.d(TAG, "arthur: usb path exists");
+                        try {
+
+                            DateFormat timeFormat = new SimpleDateFormat("yyyy_MM_dd_hh_mm_");
+                            String fileName = timeFormat.format(Calendar.getInstance().getTime()) + "fanData.csv";
+
+                            File fanCSV = new File(usbPath + fileName);
+                            fanWriter = new CSVWriter(new FileWriter(fanCSV));
+                            String[] header = { "Time", "Level", "RPM" };
+                            fanWriter.writeNext(header);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
                 } else {
                     btn_start_fan.setText("start");
                     cmdHandler.setFanSpeed(0);
+
+                    try {
+                        if(fanWriter != null) {
+                            fanWriter.close();
+                            fanWriter = null;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -371,6 +438,11 @@ public class MCUFunctionFragment extends Fragment {
                 Log.d(TAG, "fan speed: " + rpm);
                 text_fanRpm.setText(Integer.toString(rpm));
             });
+            DateFormat timeFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+            String time = timeFormat.format(Calendar.getInstance().getTime());
+            if(fanWriter != null){
+                fanWriter.writeNext(new String[]{time, Integer.toString(level), Integer.toString(rpm)});
+            }
         }
 
         @Override

@@ -3,6 +3,23 @@ import com.jht.Versions
 apply plugin: 'com.android.application'
 
 android {
+
+    signingConfigs {
+        signingChimera {
+            storeFile file('/d/chimera_io/ChimeraIO/Keystore/platform.keystore.chimera')
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        signingTestapp {
+
+            storeFile file('/d/chimera_io/ChimeraIO/Keystore/keystore.chimeraio.jks')
+            storePassword 'jhtapp'
+            keyPassword 'jhtapp'
+            keyAlias 'testapp'
+        }
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -17,9 +34,13 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.signingTestapp
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
+
+
     }
     compileOptions {
         sourceCompatibility = 1.8
@@ -31,6 +52,8 @@ android {
             path "CMakeLists.txt"
         }
     }
+
+
 }
 
 dependencies {
@@ -46,6 +69,7 @@ dependencies {
     implementation "android_ui_widgets:android_ui_widgets:${Versions.androidUIWidgets}"
     implementation "androidx.gridlayout:gridlayout:${Versions.gridlayout}"
     implementation "org.jetbrains:annotations:${Versions.jetbrains}"
+    implementation 'com.opencsv:opencsv:5.5.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
