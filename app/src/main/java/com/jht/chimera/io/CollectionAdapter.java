@@ -1,5 +1,6 @@
 package com.jht.chimera.io;
 
+import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,19 +10,22 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.jht.chimera.io.fragment.AudioTestFragment;
-import com.jht.chimera.io.fragment.ExtensionPowerTestFragment;
 import com.jht.chimera.io.fragment.MCUFunctionFragment;
 import com.jht.chimera.io.fragment.UartCommTestFragment;
 
 public class CollectionAdapter extends FragmentStateAdapter {
     private static final String TAG = CollectionAdapter.class.getSimpleName();
     private static final String[] TAB_TITLES = new String[]{"MCU Function Test", "Uart Communication Test", "Audio Test"};
-
+    private Activity activity;
 //    private ArrayList<Fragment> arrayList = new ArrayList<>();
 
     public CollectionAdapter(@NonNull FragmentManager fragmentManager,
                              @NonNull Lifecycle lifecycle) {
         super(fragmentManager,lifecycle);
+    }
+
+    public void CollectionAdapter_passActivity(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull
@@ -32,7 +36,7 @@ public class CollectionAdapter extends FragmentStateAdapter {
             case 0:
                 return new MCUFunctionFragment();
             case 1:
-                return new UartCommTestFragment();
+                return new UartCommTestFragment(activity);
             case 2:
                 return new AudioTestFragment();
         }

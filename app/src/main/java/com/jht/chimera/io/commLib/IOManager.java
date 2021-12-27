@@ -21,6 +21,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class IOManager {
 
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     private static class IOManagerInstance {
         // Note we can suppress this because we only store the application context which is good for
         // the life of the process thus no memory leak.
@@ -697,7 +701,7 @@ public class IOManager {
                 for (int i = 0; i < command.length; i++) {
                     data += String.format("%X", command[i]) + " ";
                 }
-//                Log.d(TAG, "txHandler write txCommand: " + this.txCommand.getTxMessage() + "  " + data);
+                Log.d(TAG, "txHandler write txCommand: " + this.txCommand.getTxMessage() + "  " + data);
 
                 _outStream.write(command);
 

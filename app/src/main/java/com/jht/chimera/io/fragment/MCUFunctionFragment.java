@@ -128,7 +128,7 @@ public class MCUFunctionFragment extends Fragment {
         try {
             mTimer.setOnTimer(() -> {
                 boolean isUSBConnected = new File("/mnt/media_rw/udisk").exists();
-                Log.d(TAG, "USBMountManager: usb is connected " + isUSBConnected);
+//                Log.d(TAG, "USBMountManager: usb is connected " + isUSBConnected);
             });
             mTimer.start(1000, 1000);
 

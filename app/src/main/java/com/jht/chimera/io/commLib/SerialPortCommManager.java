@@ -73,7 +73,7 @@ public class SerialPortCommManager {
 //            _txThread = new TxThread();
             _rxThread.start();
 //            _txThread.start();
-
+            isRunning = true;
         } else {
             Log.e(TAG, "serialPort instance is null!");
             return false;
@@ -100,6 +100,7 @@ public class SerialPortCommManager {
             _rxThread = null;
 //            _txThread = null;
             _isPortOpened = false;
+            isRunning = false;
         }
     }
 
@@ -109,7 +110,6 @@ public class SerialPortCommManager {
         public void run() {
             super.run();
 
-            isRunning = true;
             Log.d(TAG, "rxThread start");
             while (!isInterrupted()) {
 
@@ -160,6 +160,7 @@ public class SerialPortCommManager {
 
         _rxThread = new RxThread();
         _rxThread.start();
+        isRunning = true;
     }
 
     public void write(String data){
@@ -172,7 +173,11 @@ public class SerialPortCommManager {
         }
     }
 
-//    public class TxThread extends Thread {
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    //    public class TxThread extends Thread {
 //
 //        @Override
 //        public void run() {

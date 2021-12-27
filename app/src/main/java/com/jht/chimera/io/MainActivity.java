@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTab.setTabGravity(TabLayout.GRAVITY_FILL);
 
         CollectionAdapter viewPagerAdapter = new CollectionAdapter(getSupportFragmentManager(),getLifecycle());
-
+        viewPagerAdapter.CollectionAdapter_passActivity(this);
         viewPager.setAdapter(viewPagerAdapter);
 
         new TabLayoutMediator(fragmentTab,viewPager,(tab, position) -> tab.setText(viewPagerAdapter.getPageTitle(position))).attach();
