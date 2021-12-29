@@ -82,17 +82,17 @@ public class UartCommTestFragment extends Fragment{
                     //stuff that updates ui
                     switch (level){
                         case STOP:
+                            mThread = null;
                             Toast.makeText(context, "Stress Test Stop", Toast.LENGTH_SHORT).show();
                             break;
                         case COMPLETE:
+                            mThread = null;
                             Toast.makeText(context, "Stress Test Complete", Toast.LENGTH_SHORT).show();
                             break;
                     }
                     mBtn_StressStart.setEnabled(true);
                 }
             });
-
-
         }
 
         @Override
@@ -200,9 +200,13 @@ public class UartCommTestFragment extends Fragment{
                                 Toast.LENGTH_SHORT).show();
                     }else {
                         mBtn_StressStart.setEnabled(false);
-                        mThread = new StressTestThread(no_iteration, mLinstener);
+                        if(mThread == null) {
+                            mThread = new StressTestThread(no_iteration, mLinstener);
+                        }else {
+                            mThread.interrupt();
+                            mThread = new StressTestThread(no_iteration, mLinstener);
+                        }
                         mThread.start();
-
                     }
                 }catch (NumberFormatException e){
                     Toast.makeText(context, "Check input number not over the range", Toast.LENGTH_SHORT).show();
@@ -215,6 +219,7 @@ public class UartCommTestFragment extends Fragment{
         mBtn_StressStop.setOnClickListener(v -> {
             if(mThread.isRunning()&&mThread!=null){
                 mThread.interrupt();
+                mThread = null;
             }
         });
     }
@@ -240,6 +245,7 @@ public class UartCommTestFragment extends Fragment{
             linstener.updateTxtViewLinstener("*****Start Stress Test*****\n");
             startTick = System.currentTimeMillis();
             for(int i = 0; i<iteration;i++) {
+                //if interrupt occur, then stop run and terminate the thread
                 if (!running){
                     return;
                 }
@@ -266,7 +272,10 @@ public class UartCommTestFragment extends Fragment{
                         Elapse_tick = System.currentTimeMillis() - Tx_tick;
                         result = String.format("Epoch " + (i+1) + "/"+iteration+" Result: Success "+ Elapse_tick + " ms\n");
                     }
-                    linstener.updateTxtViewLinstener(result);
+                    Log.d(TAG, "run: " + result);
+                    // Note: do not use this,update txt view
+                    // while test lots of iteration, because it will crash somehow
+                    //linstener.updateTxtViewLinstener(result);
                 } catch (Exception e) {
                     Log.e(TAG, "run: ", e);
                 }
@@ -278,8 +287,10 @@ public class UartCommTestFragment extends Fragment{
             long minute = (durationInMillis / (1000 * 60)) % 60;
             long hour = (durationInMillis / (1000 * 60 * 60)) % 24;
             result = String.format("Total Spend: %02d h %02d min %02ds %dms\n", hour, minute, second, millis);
+            Log.d(TAG, "run: " + result);
             linstener.updateTxtViewLinstener(result);
             result = String.format("Success: %d Fail: %d\n",(no_iteration-no_fail),no_fail);
+            Log.d(TAG, "run: " + result);
             linstener.updateTxtViewLinstener(result);
             linstener.updateTxtViewLinstener("*****Complete Stress Test*****\n");
             linstener.onFinishLinstener(StressTestThreadLinstener.Level.COMPLETE);
@@ -294,7 +305,6 @@ public class UartCommTestFragment extends Fragment{
             super.interrupt();
             running = false;
             linstener.onFinishLinstener(StressTestThreadLinstener.Level.STOP);
-
         }
     }
     private ArrayList getSerialPorts() {
@@ -415,7 +425,7 @@ public class UartCommTestFragment extends Fragment{
 
         @Override
         public void consolePowerVoltage(short voltage) {
-            Log.d(TAG, "consolePowerVoltage: " + voltage);
+            // Turn off Rx wait flag
             Elapse_tick = System.currentTimeMillis();
             mStressTestRxFlag = false;
         }

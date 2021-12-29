@@ -70,12 +70,11 @@
 
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ power switch 1 -->
 
-            <RelativeLayout
-                style="@style/engineering_line_break"/>
+            <RelativeLayout style="@style/engineering_line_break" />
 
             <TextView
-                android:layout_width="350dp"
                 style="@style/GeneralEngineeringTextHeading"
+                android:layout_width="350dp"
                 android:text="POWER CONTROL" />
 
             <LinearLayout
@@ -102,7 +101,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="CSAFE"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
 
                 <Switch
@@ -113,7 +112,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="HDMI"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
 
                 <Switch
@@ -124,7 +123,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="AUDIO"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -153,7 +152,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="RFID"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Switch
                     android:id="@+id/qi_switch"
@@ -163,7 +162,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="QI"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Switch
                     android:id="@+id/tv_switch"
@@ -173,7 +172,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="TV"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -203,7 +202,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="IPDD"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Switch
                     android:id="@+id/salutron_switch"
@@ -213,7 +212,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="8700"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Switch
                     android:id="@+id/gymkit_switch"
@@ -223,7 +222,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="GYMKIT"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -252,7 +251,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="EXT_14"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <Switch
                     android:id="@+id/qi_vol_switch"
@@ -262,7 +261,7 @@
                     android:layout_marginTop="25sp"
                     android:switchPadding="5dp"
                     android:text="QI_9V"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -273,9 +272,9 @@
                 app:layout_columnSpan="@integer/eng_cols_per_page" />
 
             <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -316,9 +315,9 @@
 
                         <TextView
                             android:id="@+id/text_extend_power"
+                            style="@style/GeneralEngineeringTextValue"
                             android:layout_width="200dp"
                             android:layout_marginLeft="20sp"
-                            style="@style/GeneralEngineeringTextValue"
                             android:singleLine="false" />
 
                     </LinearLayout>
@@ -357,9 +356,9 @@
                         android:orientation="vertical">
 
                         <TextView
+                            style="@style/GeneralEngineeringTextHeading"
                             android:layout_width="200dp"
                             android:layout_marginLeft="20sp"
-                            style="@style/GeneralEngineeringTextHeading"
                             android:text="Interval(100ms)" />
 
                         <EditText
@@ -387,12 +386,11 @@
 
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Fan control -->
 
-            <RelativeLayout
-                style="@style/engineering_line_break"/>
+            <RelativeLayout style="@style/engineering_line_break" />
 
             <TextView
-                android:layout_width="350dp"
                 style="@style/GeneralEngineeringTextHeading"
+                android:layout_width="350dp"
                 android:text="FAN CONTROL" />
 
             <LinearLayout
@@ -407,9 +405,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/GeneralEngineeringTextHeading"
                         android:layout_width="200dp"
                         android:layout_marginLeft="20sp"
-                        style="@style/GeneralEngineeringTextHeading"
                         android:text="Fan Speed" />
 
                     <EditText
@@ -430,15 +428,15 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="200dp"
                         style="@style/GeneralEngineeringTextHeading"
+                        android:layout_width="200dp"
                         android:text="Fan RPM" />
 
                     <TextView
                         android:id="@+id/text_fan_rpm"
+                        style="@style/GeneralEngineeringTextHeading"
                         android:layout_width="200dp"
-                        android:layout_marginTop="20sp"
-                        style="@style/GeneralEngineeringTextHeading"/>
+                        android:layout_marginTop="20sp" />
 
                 </LinearLayout>
 
@@ -455,12 +453,11 @@
 
             <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Watchdog -->
 
-            <RelativeLayout
-                style="@style/engineering_line_break"/>
+            <RelativeLayout style="@style/engineering_line_break" />
 
             <TextView
-                android:layout_width="350dp"
                 style="@style/GeneralEngineeringTextHeading"
+                android:layout_width="350dp"
                 android:text="WATCHDOG" />
 
 
@@ -476,9 +473,9 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/GeneralEngineeringTextHeading"
                         android:layout_width="280dp"
                         android:layout_marginLeft="20sp"
-                        style="@style/GeneralEngineeringTextHeading"
                         android:text="Watchdog Timeout(Minutes)" />
 
                     <EditText
@@ -499,8 +496,8 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="250dp"
                         style="@style/GeneralEngineeringTextHeading"
+                        android:layout_width="250dp"
                         android:layout_marginLeft="20sp"
                         android:text="Refresh Time(Minutes)" />
 
