@@ -3,8 +3,6 @@ package com.jht.chimera.io.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -66,12 +64,15 @@ public class UartCommTestFragment extends Fragment{
     private StringBuilder log = new StringBuilder();
     private MainActivity.FragmentTouchListener listener;
 
-    private long no_iteration;
-    private long no_fail;
+    private long No_iteration;
+    private long CMD_fail;
     private StressTestThread mThread;
     private boolean mStressTestRxFlag = false;
+    private boolean mStressTestEventFlag = false;
+    private long Event_tick;
+    private long Event_fail;
     private long Tx_tick;
-    private long Elapse_tick;
+    private long CMD_elapse;
     private ScrollView mScrollView;
     private StressTestThreadLinstener mLinstener = new StressTestThreadLinstener() {
         @Override
@@ -194,17 +195,17 @@ public class UartCommTestFragment extends Fragment{
         mBtn_StressStart.setOnClickListener(v -> {
             if(mEdTxt_no_iteration.getText().toString().length()!=0){
                 try {
-                    no_iteration = Long.parseLong(mEdTxt_no_iteration.getText().toString());
-                    if(no_iteration < 1){
+                    No_iteration = Long.parseLong(mEdTxt_no_iteration.getText().toString());
+                    if(No_iteration < 1){
                         Toast.makeText(this.context, "Number of iteration need great than 0",
                                 Toast.LENGTH_SHORT).show();
                     }else {
                         mBtn_StressStart.setEnabled(false);
                         if(mThread == null) {
-                            mThread = new StressTestThread(no_iteration, mLinstener);
+                            mThread = new StressTestThread(No_iteration, mLinstener);
                         }else {
                             mThread.interrupt();
-                            mThread = new StressTestThread(no_iteration, mLinstener);
+                            mThread = new StressTestThread(No_iteration, mLinstener);
                         }
                         mThread.start();
                     }
@@ -228,7 +229,6 @@ public class UartCommTestFragment extends Fragment{
         volatile boolean running = false;
         String result;
         StressTestThreadLinstener linstener;
-        private long startTick;
         public StressTestThread(long iteration, StressTestThreadLinstener linstener){
             this.iteration = iteration;
             this.linstener = linstener;
@@ -241,12 +241,20 @@ public class UartCommTestFragment extends Fragment{
                 return;
             }
             running = true;
-            no_fail = 0;
+            CMD_fail = 0;
             linstener.updateTxtViewLinstener("*****Start Stress Test*****\n");
-            startTick = System.currentTimeMillis();
+            // Turn on Power Monitor Event
+            Event_fail = 0;
+
+            cmdHandler.powerMonitor(true, 3);
+            mStressTestEventFlag = false;
+            Event_tick = System.currentTimeMillis();
+            long StartTask = System.currentTimeMillis();
+
             for(int i = 0; i<iteration;i++) {
                 //if interrupt occur, then stop run and terminate the thread
                 if (!running){
+                    cmdHandler.powerMonitor(false, 3);
                     return;
                 }
                 try {
@@ -257,20 +265,30 @@ public class UartCommTestFragment extends Fragment{
                     mStressTestRxFlag = true;
                     // Wait Get Commend
                     while (mStressTestRxFlag){
+                        if(mStressTestEventFlag){
+                            mStressTestEventFlag = false;
+                            Event_tick = System.currentTimeMillis();
+                        }else{
+                            // set a reasonable timeout
+                            // MCU fail to send event within 350ms
+                            if((System.currentTimeMillis() - Event_tick)>350){
+                                Event_tick = System.currentTimeMillis();
+                                Event_fail++;
+                            }
+                        }
                         if((System.currentTimeMillis() - Tx_tick) > 501){
                             // Fail to reply within 500ms
-                            no_fail++;
+                            CMD_fail++;
                             break;
                         }
                     }
-
+                    CMD_elapse = System.currentTimeMillis() - Tx_tick;
                     if(mStressTestRxFlag){
                         // Fail to reply within 500ms
                         result = String.format("Epoch " + (i+1) + "/"+iteration+" Result: Fail\n");
                     }else{
                         // Success to get reply message
-                        Elapse_tick = System.currentTimeMillis() - Tx_tick;
-                        result = String.format("Epoch " + (i+1) + "/"+iteration+" Result: Success "+ Elapse_tick + " ms\n");
+                        result = String.format("Epoch " + (i+1) + "/"+iteration+" Result: Success "+ CMD_elapse + " ms\n");
                     }
                     Log.d(TAG, "run: " + result);
                     // Note: do not use this,update txt view
@@ -280,8 +298,10 @@ public class UartCommTestFragment extends Fragment{
                     Log.e(TAG, "run: ", e);
                 }
             }
+            // Turn off Power Monitor Event
+            cmdHandler.powerMonitor(false, 3);
             // Show Stress Test Result
-            long durationInMillis = System.currentTimeMillis() - startTick;
+            long durationInMillis = System.currentTimeMillis() - StartTask;
             long millis = durationInMillis % 1000;
             long second = (durationInMillis / 1000) % 60;
             long minute = (durationInMillis / (1000 * 60)) % 60;
@@ -289,12 +309,14 @@ public class UartCommTestFragment extends Fragment{
             result = String.format("Total Spend: %02d h %02d min %02ds %dms\n", hour, minute, second, millis);
             Log.d(TAG, "run: " + result);
             linstener.updateTxtViewLinstener(result);
-            result = String.format("Success: %d Fail: %d\n",(no_iteration-no_fail),no_fail);
+            result = String.format("Get power state commend Success: %d Fail: %d\n",(No_iteration - CMD_fail), CMD_fail);
+            Log.d(TAG, "run: " + result);
+            linstener.updateTxtViewLinstener(result);
+            result = String.format("Event Fail: %d\n",Event_fail);
             Log.d(TAG, "run: " + result);
             linstener.updateTxtViewLinstener(result);
             linstener.updateTxtViewLinstener("*****Complete Stress Test*****\n");
             linstener.onFinishLinstener(StressTestThreadLinstener.Level.COMPLETE);
-
         }
         public boolean isRunning() {
             return running;
@@ -420,13 +442,13 @@ public class UartCommTestFragment extends Fragment{
 
         @Override
         public void powerMonitorEvent(short mainVol, short extendVol, short usbVol, short mainCurrent, short extendCurrent, boolean extendError) {
-
+            mStressTestEventFlag = true;
         }
 
         @Override
         public void consolePowerVoltage(short voltage) {
             // Turn off Rx wait flag
-            Elapse_tick = System.currentTimeMillis();
+            CMD_elapse = System.currentTimeMillis();
             mStressTestRxFlag = false;
         }
 
